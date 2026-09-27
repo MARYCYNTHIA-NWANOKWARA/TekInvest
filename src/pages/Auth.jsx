@@ -1,14 +1,36 @@
 import { useForm } from "react-hook-form"
-import { useState } from "react"
+import { useState, useContext} from "react"
+import { useNavigate } from "react-router-dom"
+import { AuthContext } from "../context/AuthContext"
 
 export default function Auth(){
+    const {signUp,logIn} = useContext(AuthContext)
+
+    const navigate = useNavigate()
+
     const [mode,setMode] = useState("login")
+    const [error,setError] = useState(null)
 
     const {register,handleSubmit,formState:{errors}} = useForm()
 
     function onSubmit(data){
-        data.email,
-        data.password
+        setError(null)
+        let result;
+
+        if(mode === "signup"){
+            result = signUp(data.email, data.password)
+        }
+        else{
+            result = logIn(data.email, data.password)
+        }
+       
+
+        if(result.success){
+            navigate("/Home")
+        }
+        else{
+            setError(result.error)
+        }
     }
 
     return(
@@ -16,6 +38,7 @@ export default function Auth(){
          <div className="flex justify-center items-center h-130 ">
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 lg:w-[20%]">
+                {error && <div className=" mb-2 p-2 bg-red-100">{error}</div>}
               <h1 className="text-4xl font-bold text-center mb-14">{mode === "login" ? "Login" : "SignUp"}</h1>
                <div className="flex flex-col gap-1">
                 <label htmlFor="email" className="font-semibold">Email</label>

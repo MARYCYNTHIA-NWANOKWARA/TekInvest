@@ -29,9 +29,7 @@ export default function AuthProvider({children}){
         const user = users.find((u)=> u.email === email && u.password === password)
 
         if(!user){
-            return {success:false,
-                    error: "invalid email or password"
-            }
+            return {success:false, error: "invalid email or password"}
         }
 
         localStorage.setItem("currentUserEmail", email)
