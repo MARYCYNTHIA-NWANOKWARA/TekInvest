@@ -7,10 +7,10 @@ function App() {
 
   return (
     <Routes>
-     <Route path="/" element={<DashboardLayout/>}>
-      <Route path="/Home" element={<Home/>} />
+      <Route path="/" element={<Auth/>} />
+     <Route  element={<DashboardLayout/>}>
+      <Route path="home" element={<Home/>} />
      </Route>
-      <Route index element={<Auth/>} />
     </Routes>
   )
 }
