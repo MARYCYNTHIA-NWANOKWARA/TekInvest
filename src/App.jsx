@@ -4,6 +4,7 @@ import Home from "./pages/Home"
 import DashboardLayout from "./layouts/DashboardLayout"
 import Wallet from "./pages/Wallet"
 import Investments from "./pages/investments"
+import Transactions from "./pages/Transactions"
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
       <Route path="home" element={<Home/>} />
       <Route path="wallet" element={<Wallet/>} />
       <Route path="investments" element={<Investments/>} />
+      <Route path="transactions" element={<Transactions/>} />
      </Route>
     </Routes>
   )
